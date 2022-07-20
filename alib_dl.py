@@ -18,8 +18,8 @@ f.close()
 f = open('tempfile.txt', 'r')
 playlist = ''
 for line in f:
-	if line.strip().startswith('var player = new'):
-		playlist = line.strip()
+    if line.strip().startswith('var player = new'):
+        playlist = line.strip()
 playlist = playlist[playlist.index('{'):-2]
 playlist = playlist.replace('id', '"id"')
 playlist = playlist.replace('title', '"title"')
@@ -45,18 +45,18 @@ data = json.load(datafile)
 
 # скачиваем файлы в папку книги
 for i in data:
-	print('Downloading file:', i['title'])
-	r = requests.get(i['file'])
-	f = open(os.path.join(playlist_obj['title'], i['title']+'.mp3'), 'wb')
-	f.write(r.content)
-	f.close()
+    print('Downloading file:', i['title'])
+    r = requests.get(i['file'])
+    f = open(os.path.join(playlist_obj['title'], i['title']+'.mp3'), 'wb')
+    f.write(r.content)
+    f.close()
 
 if os.path.exists(playlist_obj['title'] + '.txt'):
-	print('removing file:', playlist_obj['title'] + '.txt')
-	os.remove(playlist_obj['title'] + '.txt')
+    print('removing file:', playlist_obj['title'] + '.txt')
+    os.remove(playlist_obj['title'] + '.txt')
 if os.path.exists('tempfile.txt'):
-	print('removing file:', 'tempfile.txt')
-	os.remove('tempfile.txt')
+    print('removing file:', 'tempfile.txt')
+    os.remove('tempfile.txt')
 
 print('done')
 
